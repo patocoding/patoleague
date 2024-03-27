@@ -1,24 +1,35 @@
 import { defineStore } from 'pinia';
-import { supabase } from '@/plugins/supabaseClient';
+import {supabase} from '../composables/useSupabaseClient.ts'
 
 export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    user: null,
+  state: () => ({ 
+    user: null ,
+    userFirstName: null,
+    userLastName: null,
+    userId: null
   }),
-  actions: {
-    async signIn(email, password) {
-      const { user, error } = await supabase.auth.signIn({ email, password });
-      if (error) throw error;
-      this.user = user;
+  actions:  ({
+    async fetchUser() {
+      const gettedUser = await supabase.auth.getUser()
+      this.user = gettedUser;
+      this.userId = gettedUser.data.user.id
+      this.getUserMetadata(this.userId);
     },
-    async signOut() {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      this.user = null;
-    },
-    checkUser() {
-      const user = supabase.auth.user();
-      this.user = user;
+
+    async getUserMetadata(userId) {
+      const { data, error } = await supabase.from('profiles')
+      .select('*').eq('user_id', userId)
+      console.log('pegou')
+      console.log('data')
+      if (data) {
+        console.log(data)
+        this.userLastName = data[0].sobrenome
+        this.userFirstName = data[0].nome
+      }
+
+      if (error) {
+        console.log(error.message)
+      }
     }
-  },
+  })
 });

@@ -9,6 +9,12 @@
 import {supabase} from "../composables/useSupabaseClient"
 import Navigation from '../components/navigation/Navigation.vue'
 import TestingPinia from '../components/testing/TestingPinia.vue'
+import { useAuthStore } from '../store/useAuthStore';
+
+const authStore = useAuthStore();
+console.log('auth store',authStore.user)
+
+
 
 const isDrawerOpen = ref(false);
 const toggleDrawer = () => {
@@ -17,7 +23,7 @@ const toggleDrawer = () => {
 
 const user = await supabase.auth.getUser()
 const session = await supabase.auth.getSession()
-console.log(session)
+
 const userData = ref([])
 const userId = await user.data.user?.id
 
@@ -30,9 +36,9 @@ const getUserProfile = async () => {
 }
 
 await getUserProfile()
-onMounted(async ()=> {
-    
-})
+onMounted(() => {
+  authStore.fetchUser();
+});
 </script>
 
 <style scoped>

@@ -1,14 +1,15 @@
 <template>
   
-
-<nav class="bg-slate-900 border-gray-200 ">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-  <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+<div>
+  <UsernameModal v-if="openModalCreateUsername"/>
+  <nav class="bg-slate-900 border-gray-200 font-[Inter] p-2">
+  <div class="max-w-screen-xl flex   justify-between mx-auto p-4">
+  <div @click="router.push('/')" class="flex items-center  rtl:space-x-reverse">
       <img src="../../assets/images/patoLeagueLogo.png" class="h-8" alt="Flowbite Logo" />
       <span class="self-center text-lg font-semibold whitespace-nowrap text-white">Pato League</span>
-  </a>
+  </div>
   
-  <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+  <div class="flex items-center md:order-2 space-x-3  rtl:space-x-reverse">
       <button @click="toggleDrawer" type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
         <span class="sr-only">Open user menu</span>
         <svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi text-white bi-person-fill-gear" viewBox="0 0 16 16">
@@ -16,91 +17,126 @@
 </svg>
       </button>
       <!-- Dropdown menu -->
-      <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-        <div class="px-4 py-3">
-          <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
-        </div>
-        <ul class="py-2" aria-labelledby="user-menu-button">
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-          </li>
-        </ul>
-      </div>
   </div>
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
       <li>
-        <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+        <a href="#" class="block py-2 px-3 text-white rounded   md:p-0 " aria-current="page">Inicio</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent  
+        md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Rankings</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 ">Meu Jogador</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
-      </li>
-      <li>
-        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0  ">Jogos</a>
       </li>
     </ul>
   </div>
   </div>
 </nav>
 <!-- Drawer -->
-<div v-if="isDrawerOpen" class="fixed inset-0 z-40 flex">
+<div v-if="isDrawerOpen" class="fixed inset-0 z-40 flex w3-animate-left">
     <div class="fixed inset-0 bg-black bg-opacity-50" @click="toggleDrawer"></div>
-    <div class="relative drawer-enter-active, drawer-leave-active flex flex-col w-64 h-full bg-slate-800 ">
+    <div class="relative drawer-enter-active drawer-leave-active flex flex-col w-64 h-full bg-slate-800 ">
         <!-- Cabeçalho do Drawer -->
-        <div class="">
+        <div v-if="authStore.user" class="">
           <div class="p-4">
             <button class="text-white" @click="toggleDrawer">
                 X
             </button>
           </div>
           <div class="pl-4">
-            <h4 class="font-[Inter] font-semibold text-white">Olá, {{ firstName }}!</h4>
+            <h4 class="font-[Inter] font-semibold text-white">Olá, {{ authStore.userFirstName }}!</h4>
           </div>
           <div class="p-4">
             <button class="bg-[#ff8539] px-6 py-2 text-white font-[Inter] font-semibold hover:bg-white hover:text-black duration-200"> Ver Perfil </button>
           </div>
           <p class="text-white"></p>
         </div>
-        <!-- Conteúdo do Drawer -->
-        <div class="flex-1 overflow-y-auto">
-            <!-- Links do Drawer ou outro conteúdo -->
+        <div class="p-4 mt-10" v-else>
+          <button class="bg-[#ff8539] px-6 py-2 text-white font-[Inter] font-semibold hover:bg-white hover:text-black duration-200" @click="router.push('/login')"> Fazer Login</button>
         </div>
+        <!-- Conteúdo do Drawer -->
+        <div class="flex-1 overflow-y-auto p-4">
+           
+           <div class="p-4">
+            <ul class="font-bold gap-y-12 flex flex-col font-[Inter]">
+              <li class="text-white border-b border-b-[#ff8539] cursor-pointer hover:scale-110 duration-200" @click="router.push('/')">Página Inicial</li>
+              <li class="text-white border-b border-b-[#ff8539] cursor-pointer hover:scale-110 duration-200" @click="redirectTo(`/perfil/${authStore.username}`)">Meu Jogador</li>
+              <li class="text-white border-b border-b-[#ff8539] cursor-pointer hover:scale-110 duration-200" @click="router.push('/')">Ranking patoLEAGUE</li>
+              <li class="text-white border-b border-b-[#ff8539] cursor-pointer hover:scale-110 duration-200" @click="router.push('/')">Jogos & Datas</li>
+              <li class="text-white border-b border-b-[#ff8539] cursor-pointer hover:scale-110 duration-200" @click="router.push('/')">Vídeos</li>
+              <li class="text-white border-b border-b-[#ff8539] cursor-pointer hover:scale-110 duration-200">Jogadores & Times</li>
+            </ul>
+            <button v-if="authStore.userFirstName" class="text-red-500 font-bold mt-10" @click="signOut">Sair</button>
+           </div>
+          
+        </div>
+        
     </div>
 </div>
+</div>
+
 </template>
 
 <script async setup lang="ts">
 import { ref } from 'vue';
 import { defineProps, defineEmits } from 'vue';
+import { useRouter } from 'vue-router';
+import { supabase } from '../../composables/useSupabaseClient';
 import { useAuthStore } from '../../store/useAuthStore';
+import UsernameModal from '../modals/UsernameModal.vue'
+
 const authStore = useAuthStore()
 const userId = ref('')
 const firstName = ref('')
 const isDrawerOpen = ref(false);
+const router = useRouter()
+const getUser = await supabase.auth.getUser()
+console.log(getUser)
+const isUserLoggedIn = ref(false)
+const openModalCreateUsername = ref(false)
 
+const redirectTo = (route) => {
+  
+  if (authStore.username) {
+    router.push(route)
+    isDrawerOpen.value = false
+  } else {
+    openModalCreateUsername.value = true
+    isDrawerOpen.value = false
+  }
+}
 
+const signOut = async () => {
+  const {error} = await supabase.auth.signOut()
 
+  if (error) {
+    console.log(error.message)
+  } else {
+    router.push('/login')
+  }
+}
+
+const getLoggedUser = async () =>{
+  await getUser
+  if ((await getUser).data.user?.id ==! null){
+    return true
+  }
+}
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;
 }
 
+// useHead({
+//   link: [{
+//       href: 'https://www.w3schools.com/w3css/4/w3.css', rel: 'stylesheet'
+//   }]
+// })
 
 
 onMounted(() => {
@@ -112,10 +148,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.drawer-enter-active, .drawer-leave-active {
-  transition: transform 0.3s ease;
-}
-.drawer-enter, .drawer-leave-to /* .drawer-leave-active in <2.1.8 */ {
-  transform: translateX(100%);
-}
+
 </style>

@@ -1,7 +1,9 @@
 <template>
     <div>
         <Navigation />
-        <TestingPinia/>
+        <Heading/>  
+        <MyPlayerSection/>  
+        <Footer/>
     </div>
 </template>
 
@@ -10,6 +12,10 @@ import {supabase} from "../composables/useSupabaseClient"
 import Navigation from '../components/navigation/Navigation.vue'
 import TestingPinia from '../components/testing/TestingPinia.vue'
 import { useAuthStore } from '../store/useAuthStore';
+import Heading from "../components/home/Heading.vue";
+
+import MyPlayerSection from "../components/home/MyPlayerSection.vue";
+
 
 const authStore = useAuthStore();
 console.log('auth store',authStore.user)
@@ -35,7 +41,7 @@ const getUserProfile = async () => {
     }
 }
 
-await getUserProfile()
+getUserProfile()
 onMounted(() => {
   authStore.fetchUser();
 });

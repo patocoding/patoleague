@@ -1,5 +1,4 @@
 <script setup>
-import { useFiltersStore } from '../../store/state.js'
 import { storeToRefs } from 'pinia'
 
 const inputVal = ref('')

@@ -1,7 +1,7 @@
 
 
 <template>
-    <div class="bg-img bg-opacity-50 w-full my-10 shadow-xl">
+    <div class="bg-img bg-opacity-50 w-full my-10 shadow-xl animate__animated animate__backInUp">
         <UsernameModal v-if="openModalCreateUsername"/>
         <div class="flex flex-col items-center md:items-start md:flex-row justify-center">
             <div>
@@ -33,6 +33,7 @@
 </template>
 
 <script setup lang="ts">
+import 'animate.css';
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../../store/useAuthStore';
@@ -88,6 +89,8 @@ onMounted(async () => {
     background-image: url('../../assets/images/home/bg-orange2.png');
     background-size: cover;
 }
+
+
 
 .conic{
     background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb);

@@ -1,8 +1,9 @@
 <template>
     <div>
         <Navigation />
-        <Heading/>  
+        <Heading title="Site Oficial da PATO LEAGUE" belowText="Aqui você encontra todas as informações do nosso campeonato: Rankings, Jogadores, partidas, resultados e muito mais!"/>  
         <MyPlayerSection/>  
+        <!-- <SelectPow/> -->
         <Footer/>
     </div>
 </template>
@@ -13,13 +14,15 @@ import Navigation from '../components/navigation/Navigation.vue'
 import TestingPinia from '../components/testing/TestingPinia.vue'
 import { useAuthStore } from '../store/useAuthStore';
 import Heading from "../components/home/Heading.vue";
-
+import SelectPoW from "~/components/week_player/SelectPoW.vue";
+import { getConfig } from "../config"
 import MyPlayerSection from "../components/home/MyPlayerSection.vue";
 
 
 const authStore = useAuthStore();
 console.log('auth store',authStore.user)
 
+const { apiUrl } = getConfig()
 
 
 const isDrawerOpen = ref(false);

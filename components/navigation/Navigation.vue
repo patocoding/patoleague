@@ -31,16 +31,16 @@
         <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 ">Meu Jogador</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0  ">Jogos</a>
+        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0" @click="router.push('/times')">Times</a>
       </li>
     </ul>
   </div>
   </div>
 </nav>
 <!-- Drawer -->
-<div v-if="isDrawerOpen" class="fixed inset-0 z-40 flex w3-animate-left">
-    <div class="fixed inset-0 bg-black bg-opacity-50" @click="toggleDrawer"></div>
-    <div class="relative drawer-enter-active drawer-leave-active flex flex-col w-64 h-full bg-slate-800 ">
+<div v-if="isDrawerOpen" class="fixed inset-0 z-40 flex ">
+    <div class="animate__fadeIn animate__animated fixed inset-0 bg-black bg-opacity-50" @click="toggleDrawer"></div>
+    <div class="animate__animated animate__fadeInLeft relative drawer-enter-active drawer-leave-active flex flex-col w-64 h-full bg-slate-800 ">
         <!-- Cabeçalho do Drawer -->
         <div v-if="authStore.user" class="">
           <div class="p-4">
@@ -89,6 +89,7 @@ import { useRouter } from 'vue-router';
 import { supabase } from '../../composables/useSupabaseClient';
 import { useAuthStore } from '../../store/useAuthStore';
 import UsernameModal from '../modals/UsernameModal.vue'
+import 'animate.css';
 
 const authStore = useAuthStore()
 const userId = ref('')
